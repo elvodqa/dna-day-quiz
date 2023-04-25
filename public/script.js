@@ -358,6 +358,15 @@ document.getElementById("buttons").addEventListener("click", function(event) {
   if (lastChar == questions[currentQuestion].answer) {
     // Correct
     score++;
+    // if score is higher than 30, go to end screen
+    if (score > 30) {
+      togglePopup("end");
+      //writeScore(userName, userMail, score);
+      setCookie(userName, [userMail, score], 7);
+      timerShouldStart = false;
+      return;
+    }
+
     document.getElementById("currentQuestion").innerHTML = "Question " + score + " of " + questions.length;
     currentQuestion++;
     countdown = 15;
